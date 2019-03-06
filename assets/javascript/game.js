@@ -43,11 +43,20 @@ function tracker() {
     document.getElementById("gleft").innerHTML = "Guesses Left: " + counter;
 };
 
+function clearGuesses() {
+    lettersGuessed = [];
+};
+
 function startGame() {
-    // guessedLetters = [];
+    counter = 9;
+    clearGuesses();
     spawnpsychicLetter();
     guessedLetters();
     tracker();
+};
+
+function reset() {
+    counter = 9;
 };
 
 document.onkeyup = function(event) {
@@ -56,17 +65,26 @@ document.onkeyup = function(event) {
     lettersGuessed.push(userGuess);
     guessedLetters();
     tracker();
+    // startGame();
+    // console.log(counter > 0);
+    
 
     if (counter > 0) {
         if (userGuess === computerGuess) {
             wins++;
             document.getElementById("wins").innerHTML = "Wins: " + wins;
             startGame();
-        }
-    } else if (counter === 0) {
+        };
+    } else {
+        // console.log('else');
+        
             losses++;
-            document.getElementById("losses").innherHTML = "Losses: " + losses;
+            // var l = document.getElementById('losses');
+            // console.log(l);
+            
+            document.getElementById("losses").innerHTML = "Losses: " + losses;
             startGame();
-    }
+
+    };
 
 };
